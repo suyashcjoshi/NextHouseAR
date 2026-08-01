@@ -1,14 +1,43 @@
-# ARCore Geospatial Codelab project
+# NextHouse AR
 
-This repository contains the template used for the [ARCore Geospatial API Codelab](https://developers.google.com/ar/develop/geospatial/java/codelab#0).
+Android AR app that lets you tap a location on the map and see nearby housing and crime context over the camera view.
 
-This repository contains the following branches:
+## Architecture
 
-* `main`, the starting point of the Codelab;
-* `step-position-user`, corresponding to the code that you should have at the end of [step 3: Determine the user's position](https://developers.google.com/ar/develop/geospatial/java/codelab#2);
-* `step-place-anchor`, corresponding to the code that you should have at the end of [step 4: Place an anchor using Earth coordinates](https://developers.google.com/ar/develop/geospatial/java/codelab#2).
+```mermaid
+flowchart LR
+  User[Map tap] --> Renderer[NextHouseARRenderer]
+  Renderer --> Geocoder[Android Geocoder]
+  Renderer --> Crime[Police.uk API]
+  Renderer --> Sales[HM Land Registry PPD]
+  Renderer --> Transport[TfL API]
+  Crime --> Overlay[AR camera panels]
+  Sales --> Overlay
+  Transport --> Overlay
+  Transport --> Map[Map marker details]
+  Geocoder --> Overlay
+```
 
-If you get stuck at any point in the Codelab, use `git checkout step-position-user` or `git checkout step-place-anchor` to check out the correct code so you can move on.
+## Flow
+
+1. ARCore tracks the device and updates the map with the current camera position.
+2. The user taps a map location.
+3. The app geocodes the tap to a street and postcode.
+4. The selected location gets an AR billboard card that stays anchored in camera space as you move.
+5. Optional camera overlay panels can be toggled on:
+   - Crime: public Police.uk street-level reports near the selected lat/lng.
+   - Property: latest sale price and date from HM Land Registry Price Paid Data by postcode.
+   - Nearest station: closest TfL rail or Tube station, distance, and walking time.
+6. The map marker still shows address and enabled context.
+
+## Data Sources
+
+- Crime: `https://data.police.uk/api/crimes-street/all-crime`
+- Property sale price/date: `https://landregistry.data.gov.uk/data/ppi/transaction-record.json`
+- Transport: `https://api.tfl.gov.uk/StopPoint`
+- Geocoding: Android `Geocoder`
+
+No paid third-party property/crime API is used.
 
 ## License
 

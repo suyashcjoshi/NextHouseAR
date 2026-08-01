@@ -1,23 +1,9 @@
-<!--
-   Copyright 2022 Google LLC
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
+<!-- /* Copyright 2026 Suyash Joshi */ -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelloGeoActivity">
+    tools:context="io.magineer.nexthousear.NextHouseARActivity">
 
   <android.opengl.GLSurfaceView
       android:id="@+id/surfaceview"
@@ -25,7 +11,64 @@
       android:layout_height="fill_parent"
       android:layout_gravity="top" />
 
-  <com.google.ar.core.codelabs.hellogeospatial.helpers.MapTouchWrapper
+  <LinearLayout
+      android:id="@+id/arInfoPanel"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="160dp"
+      android:orientation="vertical"
+      android:visibility="gone">
+
+    <TextView
+        android:id="@+id/arCrimeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DD3B1F2B"
+        android:elevation="8dp"
+        android:fontFamily="sans"
+        android:lineSpacingExtra="2dp"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:text="Crime\nVery high nearby activity\n2,613 reports in latest month" />
+
+    <TextView
+        android:id="@+id/arPropertyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#DD17352F"
+        android:elevation="8dp"
+        android:fontFamily="sans"
+        android:lineSpacingExtra="2dp"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:text="Property\nLatest sale: £1,485,000\nTue, 14 Sep 2021" />
+
+    <TextView
+        android:id="@+id/arStationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#DD26345C"
+        android:elevation="8dp"
+        android:fontFamily="sans"
+        android:lineSpacingExtra="2dp"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:text="Nearest Station\nShoreditch High Street\n345m away, about 5 min walk" />
+  </LinearLayout>
+
+  <io.magineer.nexthousear.helpers.MapTouchWrapper
       android:id="@+id/map_wrapper"
       android:layout_width="match_parent"
       android:layout_height="300dp"
@@ -36,7 +79,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HelloGeoActivity" />
+        tools:context="io.magineer.nexthousear.NextHouseARActivity" />
     <TextView
         android:padding="8dp"
         android:textColor="@android:color/black"
@@ -45,7 +88,58 @@
         android:fontFamily="monospace"
         android:layout_height="wrap_content"
         android:id="@+id/statusText"
+        android:visibility="gone"
         />
-  </com.google.ar.core.codelabs.hellogeospatial.helpers.MapTouchWrapper>
+  </io.magineer.nexthousear.helpers.MapTouchWrapper>
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="8dp"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:background="#88000000">
+
+    <CheckBox
+        android:id="@+id/cbShowDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Debug"
+        android:textColor="@android:color/white"
+        android:checked="false" />
+
+    <CheckBox
+        android:id="@+id/cbShowDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Address"
+        android:textColor="@android:color/white"
+        android:checked="true" />
+
+    <CheckBox
+        android:id="@+id/cbShowCrime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Crime"
+        android:textColor="@android:color/white"
+        android:checked="false" />
+
+    <CheckBox
+        android:id="@+id/cbShowProperty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Property"
+        android:textColor="@android:color/white"
+        android:checked="false" />
+
+    <CheckBox
+        android:id="@+id/cbShowStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Station"
+        android:textColor="@android:color/white"
+        android:checked="false" />
+  </LinearLayout>
 
 </RelativeLayout>
