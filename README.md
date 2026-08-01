@@ -43,5 +43,5 @@ No paid third-party property/crime API is used.
 
 ## Acknowledgement
 
-- Build at London Data House 0 Hackathon (Aug, 2026)
+- Build during London Data House 0 Hackathon (Aug, 2026)
 - Bugs, Feature Requests, questions are all welcome!
