@@ -2,6 +2,8 @@
 
 Android AR app that lets you tap a location on the map and see nearby housing and crime context over the camera view.
 
+![NextHouse AR app screenshot](docs/assets/screenshot.jpeg)
+
 ## Architecture
 
 ```mermaid
