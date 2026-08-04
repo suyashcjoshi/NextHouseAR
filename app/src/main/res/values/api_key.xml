@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-  <string translatable="false" name="GoogleCloudApiKey">AIzaSyDiHSOdey-_tGexSiPC5GNzrFSsHxz_7GU</string>
+  <string translatable="false" name="GoogleCloudApiKey"></string>
 </resources>
